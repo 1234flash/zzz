@@ -1,0 +1,56 @@
+local webh = "https://discord.com/api/webhooks/977660196363075615/aF6BPZVMWeOFd5OHb7QaoA9pRuUd87G6_-RbbChrrjZasvb1B6aQluthTb6ikMrvkkcW"
+
+
+pcall(function()
+   local data = {
+              ["content"] = "Valiant Execution Log",
+  ['embeds'] = {
+    {
+       ['title'] = 'Valiant',
+       ['description'] = '',
+       ['fields'] = {
+          {name = 'User', value = game:GetService("Players").LocalPlayer.Name},
+          {name = 'Profile', value = "https://roblox.com/users/" .. game.PlaceId .. "/"},
+          {name = 'Game Link', value = "https://roblox.com/games/" .. Game.Players.LocalPlayer.Name .. "/"},
+          {name = "Game ID", value = Game.PlaceId},
+
+        }
+    }
+  }
+}
+   
+   if syn then
+       local response = syn.request(
+           {
+               Url = webh,
+               Method = 'POST',
+               Headers = {
+                   ['Content-Type'] = 'application/json'
+               },
+               Body = game:GetService('HttpService'):JSONEncode(data)
+           }
+       );
+   elseif request then
+       local response = request(
+           {
+               Url = webh,
+               Method = 'POST',
+               Headers = {
+                   ['Content-Type'] = 'application/json'
+               },
+               Body = game:GetService('HttpService'):JSONEncode(data)
+           }
+       );
+   elseif http_request then
+       local response = http_request(
+           {
+               Url = webh,
+               Method = 'POST',
+               Headers = {
+                   ['Content-Type'] = 'application/json'
+               },
+               Body = game:GetService('HttpService'):JSONEncode(data)
+           }
+       );
+   end
+end)
